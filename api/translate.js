@@ -1,52 +1,39 @@
 // api/translate.js
-const genai = require('@google-ai/generativelanguage'); // Gemini API SDK
-require('dotenv').config();
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const client = new genai.TextServiceClient({
-  apiKey: process.env.GOOGLE_API_KEY, // Gemini API key
-});
-
-async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
     const { text, sourceLang, targetLang, refine } = req.body || {};
 
     if (!process.env.GOOGLE_API_KEY) {
-      return res.status(500).json({ error: 'Missing GOOGLE_API_KEY' });
+      return res.status(500).json({ error: "Missing GOOGLE_API_KEY" });
     }
 
     if (!text || !targetLang) {
-      return res.status(400).json({ error: 'Missing parameters' });
+      return res.status(400).json({ error: "Missing parameters" });
     }
 
-    // Construct prompt for translation
     const prompt = `
-You are a professional medical translator. Translate the following text from ${sourceLang || 'auto'} to ${targetLang}.
-Use patient-friendly wording while keeping medical precision.
-${refine ? 'Also fix ASR errors, abbreviations, and misspellings commonly heard in medical speech.' : ''}
-
-Input:
+Translate this healthcare-related text from ${sourceLang || "auto"} to ${targetLang}.
+Make it patient-friendly and medically accurate.
+${refine ? "Also correct misheard speech or abbreviations." : ""}
+Text:
 """${text}"""
-
 Return only the translated text.
 `;
 
-    const response = await client.generateText({
-      model: 'models/gemini-2.5', // Use the latest supported Gemini model
-      prompt: prompt,
-      maxOutputTokens: 1000,
-    });
-
-    const translated = response?.candidates?.[0]?.content?.trim() || '';
+    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const result = await model.generateContent(prompt);
+    const translated = result?.response?.text?.() || "";
 
     return res.status(200).json({ translated });
   } catch (error) {
-    console.error('Gemini translation error:', error);
-    return res.status(500).json({ error: 'Translation failed' });
+    console.error("Gemini translation error:", error);
+    return res.status(500).json({ error: "Translation failed" });
   }
 }
-
-module.exports = handler;

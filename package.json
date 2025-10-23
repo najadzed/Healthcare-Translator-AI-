@@ -2,12 +2,9 @@
   "name": "healthcare-translator",
   "version": "1.0.0",
   "description": "Real-time multilingual healthcare translation with AI refinement",
-  "main": "server.js",
-  "type": "commonjs",
+  "main": "index.html",
   "scripts": {
     "dev": "vercel dev",
-    "start": "node server.js",
-    "local": "node server.js",
     "build": "echo 'Static site - no build needed'",
     "deploy": "vercel --prod"
   },
@@ -20,12 +17,6 @@
   ],
   "author": "Healthcare Translator Team",
   "license": "MIT",
-  "dependencies": {
-    "@vercel/node": "^5.4.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.6.1",
-    "express": "^4.18.2"
-  },
   "devDependencies": {
     "vercel": "^32.0.0"
   },
