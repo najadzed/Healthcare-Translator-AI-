@@ -10,23 +10,20 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// ✅ Serve all static files correctly
-app.use(express.static(path.join(__dirname)));
+// ✅ Serve static frontend files (from /public or /src)
+app.use(express.static(path.join(__dirname, 'src')));
 
 // Import API handlers
-const translateHandler = require('./api/translate.local.js');
-const healthHandler = require('./api/health.local.js');
+const translateHandler = require('./api/translate.js');
+const healthHandler = require('./api/health.js');
 
-// API Routes
+// API routes
 app.post('/api/translate', translateHandler);
 app.get('/api/health', healthHandler);
 
-// ✅ Only send index.html for non-file routes (SPAs)
+// ✅ Fallback to index.html for SPA routes
 app.get('*', (req, res, next) => {
-  // Skip if request looks like a file (has a dot in it)
-  if (req.path.includes('.')) {
-    return res.status(404).end();
-  }
+  if (req.path.includes('.')) return res.status(404).end();
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 

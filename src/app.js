@@ -1,4 +1,4 @@
-import { languages } from './languages.js';
+import { languages } from '../src/languages.js';
 
 const inputLangEl = document.getElementById('inputLang');
 const outputLangEl = document.getElementById('outputLang');
