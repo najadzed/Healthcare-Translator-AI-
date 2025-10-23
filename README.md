@@ -177,7 +177,7 @@ vercel --prod
 
 ## 📞 Contact
 
-**Developer**: [Your Name]  
+**Developer**: Ahammed Najad  
 **Project**: Healthcare Translation Web App  
 **For**: Nao Medical Pre-Interview Assignment  
 **Date**: October 2025
