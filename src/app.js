@@ -42,7 +42,7 @@ function setSttStatus(status) {
 }
 
 function ensureEnv() {
-	fetch('/api/health').then(async (r) => {
+	fetch('/api/health.js').then(async (r) => {
 		const ok = r.ok;
 		envWarningEl.hidden = ok;
 	}).catch(() => {
@@ -115,7 +115,7 @@ function stopRecognition() {
 }
 
 async function translateText(text, sourceLang, targetLang, refine) {
-	const res = await fetch('/api/translate', {
+	const res = await fetch('/api/translate.js', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'

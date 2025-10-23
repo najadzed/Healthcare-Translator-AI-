@@ -1,26 +1,7 @@
 {
   "name": "healthcare-translator",
   "version": "1.0.0",
-  "description": "Real-time multilingual healthcare translation with AI refinement",
-  "main": "index.html",
-  "scripts": {
-    "dev": "vercel dev",
-    "build": "echo 'Static site - no build needed'",
-    "deploy": "vercel --prod"
-  },
-  "keywords": [
-    "healthcare",
-    "translation",
-    "speech-recognition",
-    "ai",
-    "medical"
-  ],
-  "author": "Healthcare Translator Team",
-  "license": "MIT",
-  "devDependencies": {
-    "vercel": "^32.0.0"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1"
   }
 }

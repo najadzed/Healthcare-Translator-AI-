@@ -1,75 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Healthcare Translator</title>
-
-	<!-- ✅ Use relative paths -->
-	<link rel="stylesheet" href="./src/styles.css">
-
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-	<meta name="description" content="Real-time multilingual healthcare translator with AI refinement and TTS">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedTranslate AI - Futuristic</title>
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-	<header class="app-header">
-		<h1>Healthcare Translation</h1>
-		<div class="env-warning" id="envWarning" hidden>
-			<span>API key not configured. Translation disabled.</span>
-		</div>
-	</header>
+  <header class="header">
+    <h1>🩺 MedTranslate AI</h1>
+    <p>Voice translation for healthcare, in real-time</p>
+  </header>
 
-	<main class="container">
-		<section class="controls">
-			<div class="lang-selects">
-				<label>
-					Input language
-					<select id="inputLang"></select>
-				</label>
-				<label>
-					Output language
-					<select id="outputLang"></select>
-				</label>
-			</div>
-			<div class="actions">
-				<button id="startBtn" class="primary">Start</button>
-				<button id="stopBtn" class="secondary" disabled>Stop</button>
-				<label class="toggle">
-					<input type="checkbox" id="refineToggle" checked>
-					<span>AI refine medical terms</span>
-				</label>
-			</div>
-		</section>
+  <main class="container">
+    <div id="envWarning" class="env-warning" hidden>
+      ⚠️ API key missing or backend not reachable.
+    </div>
 
-		<section class="transcripts">
-			<div class="panel">
-				<div class="panel-header">
-					<h2>Original</h2>
-					<span id="sttStatus" class="status idle">Idle</span>
-				</div>
-				<div id="originalText" class="text-box" aria-live="polite"></div>
-			</div>
-			<div class="panel">
-				<div class="panel-header">
-					<h2>Translated</h2>
-					<div class="speak">
-						<button id="speakBtn" class="icon" title="Speak translation" disabled>
-							<span>🔊</span>
-						</button>
-					</div>
-				</div>
-				<div id="translatedText" class="text-box" aria-live="polite"></div>
-			</div>
-		</section>
+    <section class="controls-card glass">
+      <div class="lang-selects">
+        <div class="lang-group">
+          <label for="inputLang">Input Language</label>
+          <select id="inputLang"></select>
+        </div>
+        <div class="lang-group">
+          <label for="outputLang">Output Language</label>
+          <select id="outputLang"></select>
+        </div>
+      </div>
 
-		<section class="footer">
-			<p class="hint">Tip: Use headphones. This prototype uses your browser's speech recognition and AI translation.</p>
-		</section>
-	</main>
+      <div class="buttons">
+        <button id="startBtn" class="btn start">🎤 Start</button>
+        <button id="stopBtn" class="btn stop" disabled>⏹ Stop</button>
+        <button id="speakBtn" class="btn speak" disabled>🔊 Speak</button>
+      </div>
 
-	<!-- ✅ Relative path for JS module -->
-	<script type="module" src="./src/app.js"></script>
+      <div class="toggle-group">
+        <label>
+          <input type="checkbox" id="refineToggle" checked />
+          Refine medical terms (AI)
+        </label>
+      </div>
+
+      <div id="sttStatus" class="status idle">Idle</div>
+      <div class="wave" id="waveAnimation"></div>
+    </section>
+
+    <section class="transcripts-card">
+      <div class="transcript-panel glass">
+        <h2>Original</h2>
+        <div id="originalText" class="text-box"></div>
+      </div>
+
+      <div class="transcript-panel glass">
+        <h2>Translated</h2>
+        <div id="translatedText" class="text-box"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>⚕️ Built by Najad | Futuristic MedTranslate AI Prototype</p>
+  </footer>
+
+  <script type="module" src="/src/app.js"></script>
 </body>
 </html>

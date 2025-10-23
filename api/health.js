@@ -1,7 +1,10 @@
-export default function handler(req, res) {
-  const hasKey = !!process.env.GOOGLE_API_KEY;
-  res.status(200).json({
-    status: hasKey ? "ok" : "missing",
-    message: hasKey ? "API key configured" : "Missing GOOGLE_API_KEY"
-  });
+// Local Express server version: GET /api/health
+
+function handler(req, res) {
+    // Do NOT log the raw key. Just return whether it's loaded.
+    const ok = !!process.env.GOOGLE_API_KEY;
+    res.status(ok ? 200 : 500).json({ ok, provider: 'google' });
 }
+
+// Export for Express
+module.exports = handler;
