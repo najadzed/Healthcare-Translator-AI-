@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
     // 3. Initialize Gemini API client
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     // 4. Build translation prompt
     const prompt = `
