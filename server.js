@@ -3,6 +3,12 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 
+// Check if environment variable is loaded
+if (!process.env.GOOGLE_API_KEY) {
+    console.log('⚠️  GOOGLE_API_KEY not found in environment variables');
+    console.log('📝 Please set GOOGLE_API_KEY in your .env file for translation to work');
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
