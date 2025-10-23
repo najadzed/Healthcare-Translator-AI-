@@ -1,7 +1,7 @@
-// Vercel serverless function: POST /api/translate
+// Local Express server version: POST /api/translate
 // Expects { text, sourceLang, targetLang, refine }
 
-export default async function handler(req, res) {
+async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
@@ -70,3 +70,6 @@ Return only the translated text.`;
         return res.status(500).json({ error: 'Server error' });
     }
 }
+
+// Export for Express
+module.exports = handler;

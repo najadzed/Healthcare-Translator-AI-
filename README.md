@@ -15,20 +15,38 @@ A mobile-first prototype enabling live speech transcription, real-time translati
 - AI: Google Gemini API for translation/refinement
 
 ## Local Setup
+
+### Option 1: Local Express Server (Recommended for testing)
 1. Get a Google API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Create a project on Vercel and link this folder, or run locally with `vercel dev`.
-3. Set environment variable `GOOGLE_API_KEY` in Vercel project settings.
-4. If running locally via `vercel dev`, create `.env` with:
+2. Install dependencies:
    ```bash
-   GOOGLE_API_KEY=your_google_api_key_here
+   npm install
    ```
-   (Copy from `env.example`)
-5. Start dev:
+3. Create `.env` file:
+   ```bash
+   cp env.example .env
+   # Edit .env and add your Google API key
+   ```
+4. Start local server:
+   ```bash
+   npm start
+   # or
+   npm run local
+   ```
+5. Open `http://localhost:3000`
+
+### Option 2: Vercel CLI
+1. Get a Google API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Install Vercel CLI:
    ```bash
    npm i -g vercel
+   ```
+3. Create `.env` file with your API key
+4. Start Vercel dev server:
+   ```bash
    vercel dev
    ```
-6. Open `http://localhost:3000`.
+5. Open `http://localhost:3000`
 
 Notes:
 - Chrome recommended for Web Speech API.

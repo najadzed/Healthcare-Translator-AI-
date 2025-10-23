@@ -1,7 +1,10 @@
-// Vercel serverless function: GET /api/health
+// Local Express server version: GET /api/health
 
-export default function handler(req, res) {
+function handler(req, res) {
     // Do NOT log the raw key. Just return whether it's loaded.
     const ok = !!process.env.GOOGLE_API_KEY;
     res.status(ok ? 200 : 500).json({ ok, provider: 'google' });
 }
+
+// Export for Express
+module.exports = handler;
